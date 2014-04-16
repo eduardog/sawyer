@@ -135,7 +135,7 @@ module Sawyer
     def head(options = nil)
       options ||= {}
       options[:method] = :head
-      call options
+      call nil, options
     end
 
     # Public: Makes an API request with the curent Relation using GET.
@@ -152,7 +152,7 @@ module Sawyer
     def get(options = nil)
       options ||= {}
       options[:method] = :get
-      call options
+      call nil, options
     end
 
     # Public: Makes an API request with the curent Relation using POST.
@@ -244,6 +244,8 @@ module Sawyer
     #           :headers - Hash of API headers to set.
     #           :query   - Hash of URL query params to set.
     #           :method  - Symbol HTTP method.
+    #                      If this option is specified, data must be explicitly
+    #                      provided, even for :get and :head requests.
     #
     # Raises ArgumentError if the :method value is not in @available_methods.
     # Returns a Sawyer::Response.
